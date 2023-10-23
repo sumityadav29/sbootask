@@ -1,4 +1,4 @@
-package com.devworks.sbootask.controller;
+package com.devworks.sbootask.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
