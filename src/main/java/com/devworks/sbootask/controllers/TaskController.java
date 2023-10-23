@@ -6,10 +6,7 @@ import com.devworks.sbootask.entities.TaskEntity;
 import com.devworks.sbootask.repositories.TaskRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +19,8 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
-    @GetMapping("/tasks/:id")
-    public ResponseEntity<TaskResponseDTO> getTask(Integer id) {
+    @GetMapping("/tasks/{id}")
+    public ResponseEntity<TaskResponseDTO> getTask(@PathVariable Integer id) {
         TaskEntity taskEntity = taskRepository.getTask(id);
         TaskResponseDTO taskResponseDTO = new TaskResponseDTO(taskEntity.getId(), taskEntity.getContent());
         return ResponseEntity.ok(taskResponseDTO);
