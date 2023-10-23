@@ -5,6 +5,7 @@ import com.devworks.sbootask.entities.TaskEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -22,10 +23,10 @@ public class TaskRepository {
 
     public TaskEntity createTask(TaskRequestDTO taskRequestDTO) {
         TaskEntity taskEntity = new TaskEntity();
-        taskEntity.setId(taskEntities.isEmpty() ? 1 : taskEntities
+        taskEntity.setId(taskEntities.isEmpty() ? 1 : 1 + taskEntities
                 .stream()
                 .map(TaskEntity::getId)
-                .max((id1, id2) -> id1 > id2 ? id1 : id2).get());
+                .max(Comparator.comparingInt(id -> id)).get());
         taskEntity.setContent(taskRequestDTO.getContent());
         taskEntities.add(taskEntity);
         return taskEntity;
